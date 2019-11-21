@@ -1,4 +1,6 @@
 import React, { useCallback, useState, useEffect, useRef } from "react";
+
+import useRandomColors from "../hooks/useRandomColors";
 import Card from "./Card";
 import "./board.css";
 
@@ -6,29 +8,11 @@ const COLOR_ARRAY = [
   "red", "blue", "yellow", "grey", "brown", "aqua", "green", "beige"
 ];
 
-const colorDisposition = (function generateListOfColors(colors) {
-  const listOfColors = [...colors, ...colors];
-  
-  function shuffleArray(arr) {
-    var processedArray = [...arr];
-    var result = [];
-
-    for (let i = 0; i < arr.length; i ++) {
-      const randomIndex = Math.floor(Math.random() * processedArray.length);
-      result.push(processedArray[randomIndex]);
-      processedArray.splice(randomIndex, 1)
-    }
-
-    return result;
-  };
-  
-  return shuffleArray(listOfColors);
-})(COLOR_ARRAY);
-
 const checkTurnedCard = (listOfCards) => listOfCards.findIndex(i => i.visible);
 
-function Board() {
-  const [gameState, setGameState] = useState(colorDisposition.map(i => ({ visible: false, color: i , present: true })));
+function Board({ numberOfCards = 16 }) {
+  const randomColors = useRandomColors(COLOR_ARRAY, numberOfCards);
+  const [gameState, setGameState] = useState(randomColors.map(i => ({ visible: false, color: i , present: true })));
   const timer = useRef();
 
   useEffect(() => {
