@@ -1,0 +1,41 @@
+.card {
+  border-radius: 0.5rem;
+  height: 50px;
+  width: 50px;
+  transition: opacity 1s ease-out;
+  cursor: pointer;
+}
+
+.flippable {
+  perspective: 1000px;
+}
+
+.flippable .flipper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: 0.7s;
+  transform-style: preserve-3d;
+}
+
+.flippable .flipper.flipped {
+  transform: rotateY(180deg);
+}
+
+.flippable .front, .flippable .back {
+  backface-visibility: hidden;
+  border-radius: 0.5rem;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.flippable .front {
+  transform: rotateY(0deg);
+}
+
+.flippable .back {
+  transform: rotateY(180deg);
+}
