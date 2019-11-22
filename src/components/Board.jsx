@@ -5,12 +5,12 @@ import Card from "./Card";
 import "./board.css";
 
 const COLOR_ARRAY = [
-  "red", "blue", "yellow", "grey", "brown", "aqua", "green", "beige"
+  "red", "blue", "yellow", "grey", "brown", "aqua", "green", "yellowgreen", "violet"
 ];
 
 const checkTurnedCard = (listOfCards) => listOfCards.findIndex(i => i.visible);
 
-function Board({ numberOfCards = 16 }) {
+function Board({ numberOfCards = 20 }) {
   const randomColors = useRandomColors(COLOR_ARRAY, numberOfCards);
   const [gameState, setGameState] = useState(randomColors.map(i => ({ visible: false, color: i , present: true })));
   const timer = useRef();
