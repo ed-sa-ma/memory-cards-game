@@ -6,7 +6,15 @@ import Card from "./Card";
 import "./board.css";
 
 const POSSIBLE_COLORS = [
-  "red", "blue", "yellow", "grey", "brown", "aqua", "green", "yellowgreen", "violet"
+  "red",
+  "blue",
+  "yellow",
+  "grey",
+  "brown",
+  "aqua",
+  "green",
+  "yellowgreen",
+  "violet",
 ];
 
 function Board({ numberOfCards = 20 }) {
@@ -16,7 +24,7 @@ function Board({ numberOfCards = 20 }) {
   const [counter, setCounter] = useState(0);
 
   function handleClickCard(idx) {
-    if(!cardsState[idx].visible) {
+    if (!cardsState[idx].visible) {
       setCounter(prevCounter => prevCounter + 1);
     }
 
@@ -26,26 +34,24 @@ function Board({ numberOfCards = 20 }) {
   return (
     <>
       <div className="board">
-        {
-          cardsState.map(({ color, visible, present }, idx) => 
-            <Card
-              color={color}
-              key={idx}
-              onClick={() => handleClickCard(idx)}
-              present={present}
-              visible={visible}
-            />
-          )
-        }
+        {cardsState.map(({ color, visible, present }, idx) => (
+          <Card
+            color={color}
+            key={idx}
+            onClick={() => handleClickCard(idx)}
+            present={present}
+            visible={visible}
+          />
+        ))}
       </div>
       <div className="counter">
-        <div className="counter--badge">
-          { `Moves: ${counter} *` }
-        </div>
-        <span className="counter--note">{`*Perfect game: ${randomColors.length / 2}`}</span>
+        <div className="counter--badge">{`Moves: ${counter} *`}</div>
+        <span className="counter--note">
+          {`*Perfect game: ${randomColors.length / 2}`}
+        </span>
       </div>
     </>
   );
-};
+}
 
 export default Board;

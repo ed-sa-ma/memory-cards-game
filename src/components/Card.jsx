@@ -5,9 +5,9 @@ function Card({ color, onClick, present, visible }) {
   return (
     <div
       className="card flippable"
-      onClick={() => { onClick(); }}
+      onClick={onClick}
       style={{
-        opacity: `${present ? "1" : "0"}`
+        opacity: `${present ? "1" : "0"}`,
       }}
     >
       <div className={`flipper ${visible ? "flipped" : ""}`.trim()}>
@@ -16,6 +16,6 @@ function Card({ color, onClick, present, visible }) {
       </div>
     </div>
   );
-};
+}
 
 export default Card;
