@@ -7,3 +7,22 @@
   justify-items: center;
   padding: 10px;
 }
+
+.counter {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.counter > * + * {
+  margin-top: 1rem;
+}
+
+.counter .counter--note {
+  font-size: 0.6em;
+}
+.counter .counter--badge {
+  padding: 1rem;
+  border: #333 solid 2px;
+  border-radius: 0.3rem;
+}
