@@ -6,6 +6,8 @@
   justify-content: center;
   font-size: 2rem;
   color: #eee;
+  /* When text wraps it stays sticked to the left of the container */
+  text-align: center;
 }
 
 .App > * + * {
