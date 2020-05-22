@@ -21,7 +21,7 @@ function Board() {
       <div className="counter">
         <div className="counter--badge">{`Moves: ${count} *`}</div>
         <span className="counter--note">
-          {`*Perfect game: ${board.length / 2}`}
+          {`*Perfect game: ${board.length}`}
         </span>
       </div>
     </>

@@ -39,6 +39,11 @@ function reducer(state, action) {
     case "DISABLE_BOARD": {
       return { ...state, isInteractive: false };
     }
+    case "SHOW_ALL_CARDS": {
+      let newBoard = state.board.map((card) => ({ ...card, visible: false }));
+
+      return { ...state, board: newBoard, isInteractive: true };
+    }
     case "SUCCESS_PAIR": {
       let newBoard = [...state.board];
 
@@ -88,7 +93,7 @@ function reducer(state, action) {
 export default function useGlobalStateReducer() {
   const randomColors = useRandomColors(POSSIBLE_COLORS, NUMBER_OF_CARDS);
   let initialBoard = randomColors.map((color) => ({
-    visible: false,
+    visible: true,
     color,
     present: true,
   }));
@@ -100,6 +105,18 @@ export default function useGlobalStateReducer() {
     flippedCards: [],
   });
 
+  // Flip all card after some time showing them at the beginning.
+  useEffect(() => {
+    dispatch({ type: "DISABLE_BOARD" });
+
+    let timeout = setTimeout(() => {
+      dispatch({ type: "SHOW_ALL_CARDS" });
+    }, 3000);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  // Initiate a check if two cards are flipped.
   useEffect(() => {
     if (
       state.flippedCards.length < 2 ||
