@@ -1,11 +1,21 @@
 import React from "react";
+
+import { useSelector, useDispatch } from "./GlobalStateProvider";
+
 import "./card.css";
 
-function Card({ color, onClick, present, visible }) {
+function Card({ idx }) {
+  const { color, present, visible } = useSelector((state) => state.board[idx]);
+  const dispatch = useDispatch();
+
+  function handleClickCard() {
+    dispatch({ type: "FLIP_CARD", idx });
+  }
+
   return (
     <div
       className="card flippable"
-      onClick={onClick}
+      onClick={handleClickCard}
       style={{
         opacity: `${present ? "1" : "0"}`,
       }}
