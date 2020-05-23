@@ -6,22 +6,23 @@ import Card from "./Card";
 import styles from "./board.module.css";
 
 function Board() {
-  const { board, count } = useSelector((state) => ({
+  const { numberOfCards, count } = useSelector((state) => ({
     count: state.count,
-    board: state.board,
+    numberOfCards: state.board.length,
   }));
+
+  let boardRender = [];
+  for (let i = 0; i < numberOfCards; i++) {
+    boardRender.push(<Card key={i} idx={i} />);
+  }
 
   return (
     <>
-      <div className={styles.board}>
-        {board.map((_, idx) => (
-          <Card key={idx} idx={idx} />
-        ))}
-      </div>
+      <div className={styles.board}>{boardRender}</div>
       <div className={styles.counter}>
         <div className={styles.counterBadge}>{`Moves: ${count} *`}</div>
         <span className={styles.counterNote}>
-          {`*Perfect game: ${board.length}`}
+          {`*Perfect game: ${numberOfCards}`}
         </span>
       </div>
     </>
