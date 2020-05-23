@@ -1,8 +1,8 @@
 import React from "react";
 
-import { useSelector } from "./GlobalStateProvider";
+import { useSelector } from "../../store/GlobalStateProvider";
 import Card from "./Card";
-import ResetIcon from "../svg/resetIcon.svg";
+import ResetIcon from "../../svg/resetIcon.svg";
 
 import styles from "./board.module.css";
 

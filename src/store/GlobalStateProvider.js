@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useMemo } from "react";
 
-import useGlobalStateReducer from "../hooks/useGlobalStateReducer";
+import { useGlobalStateReducer } from "../hooks";
 
 const GlobalContext = createContext();
 

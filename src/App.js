@@ -1,7 +1,7 @@
 import React from "react";
 
-import Board from "./components/Board";
-import GlobalStateProvider from "./components/GlobalStateProvider";
+import { Board } from "./components";
+import GlobalStateProvider from "./store/GlobalStateProvider";
 import styles from "./App.module.css";
 
 function App() {

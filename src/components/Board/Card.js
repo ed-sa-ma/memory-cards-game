@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useSelector, useDispatch } from "./GlobalStateProvider";
+import { useSelector, useDispatch } from "../../store/GlobalStateProvider";
 
 import styles from "./card.module.css";
 
