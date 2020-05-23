@@ -18,10 +18,11 @@
   margin-top: 1rem;
 }
 
-.counter .counter--note {
+.counterNote {
   font-size: 0.6em;
 }
-.counter .counter--badge {
+
+.counterBadge {
   padding: 1rem;
   border: #333 solid 2px;
   border-radius: 0.3rem;

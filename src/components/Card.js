@@ -2,7 +2,7 @@ import React from "react";
 
 import { useSelector, useDispatch } from "./GlobalStateProvider";
 
-import "./card.css";
+import styles from "./card.module.css";
 
 function Card({ idx }) {
   const { color, present, visible } = useSelector((state) => state.board[idx]);
@@ -14,15 +14,17 @@ function Card({ idx }) {
 
   return (
     <div
-      className="card flippable"
+      className={`${styles.card} ${styles.flippable}`}
       onClick={handleClickCard}
       style={{
         opacity: `${present ? "1" : "0"}`,
       }}
     >
-      <div className={`flipper ${visible ? "flipped" : ""}`.trim()}>
-        <div className="back" style={{ backgroundColor: `${color}` }} />
-        <div className="front" style={{ backgroundColor: `#333` }} />
+      <div
+        className={`${styles.flipper} ${visible ? styles.flipped : ""}`.trim()}
+      >
+        <div className={styles.back} style={{ backgroundColor: `${color}` }} />
+        <div className={styles.front} style={{ backgroundColor: `#333` }} />
       </div>
     </div>
   );
