@@ -1,7 +1,9 @@
 import React from "react";
 
 import { useSelector } from "../../store/GlobalStateProvider";
+import { Button } from "../";
 import Card from "./Card";
+import { goToMain } from "../Router/Router";
 
 import styles from "./board.module.css";
 
@@ -24,6 +26,7 @@ function Board() {
         <span className={styles.counterNote}>
           {`*Perfect game: ${numberOfCards}`}
         </span>
+        <Button label="return" onClick={goToMain} />
       </div>
     </>
   );
