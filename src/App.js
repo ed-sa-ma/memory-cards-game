@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Board } from "./components";
+import { Router } from "./components";
 import GlobalStateProvider from "./store/GlobalStateProvider";
 import styles from "./App.module.css";
 
@@ -9,9 +9,11 @@ function App() {
     <GlobalStateProvider>
       <div className={styles.App}>
         <div className={styles.headlineContainer}>
-          <h1> MEMORY CARDS </h1>
+          <h1 className={styles.headline}> MEMORY CARDS </h1>
         </div>
-        <Board />
+        <div className={styles.contentContainer}>
+          <Router />
+        </div>
       </div>
     </GlobalStateProvider>
   );

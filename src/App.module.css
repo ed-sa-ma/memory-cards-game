@@ -1,4 +1,5 @@
 .headlineContainer {
+  min-height: 10rem;
   background-color: #333;
   display: flex;
   flex-direction: column;
@@ -10,6 +11,16 @@
   text-align: center;
 }
 
-.App > * + * {
-  margin-top: 2rem;
+.headline {
+  font-size: 3rem;
+}
+
+.contentContainer {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.contentContainer > * {
+  max-width: 500px;
 }
