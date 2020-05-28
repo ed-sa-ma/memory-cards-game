@@ -7,6 +7,8 @@ import Card from "./Card";
 import { goToMain } from "../Router/Router";
 
 import styles from "./board.module.css";
+import resetIcon from "../../svg/resetIcon.svg";
+import returnIcon from "../../svg/returnIcon.svg";
 
 function Board() {
   const { numberOfCards, count } = useSelector((state) => ({
@@ -43,7 +45,8 @@ function Board() {
         <span className={styles.counterNote}>
           {`*Perfect game: ${numberOfCards}`}
         </span>
-        <Button label="return" onClick={goToMain} />
+        <Button leftIcon={resetIcon} onClick={() => {}} />
+        <Button leftIcon={returnIcon} onClick={goToMain} />
       </div>
     </div>
   );
