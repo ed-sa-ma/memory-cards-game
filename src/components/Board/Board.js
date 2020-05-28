@@ -19,7 +19,7 @@ function Board() {
   }
 
   return (
-    <>
+    <div className={styles.boardWrapper}>
       <div className={styles.board}>{boardRender}</div>
       <div className={styles.counter}>
         <div className={styles.counterBadge}>{`Moves: ${count} *`}</div>
@@ -28,7 +28,7 @@ function Board() {
         </span>
         <Button label="return" onClick={goToMain} />
       </div>
-    </>
+    </div>
   );
 }
 
