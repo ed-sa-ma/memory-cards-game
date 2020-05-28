@@ -41,7 +41,7 @@ function reducer(state, action) {
     case "DISABLE_BOARD": {
       return { ...state, isInteractive: false };
     }
-    case "SHOW_ALL_CARDS": {
+    case "HIDE_ALL_CARDS": {
       let newBoard = state.board.map((card) => ({ ...card, visible: false }));
 
       return { ...state, board: newBoard, isInteractive: true };
@@ -112,7 +112,7 @@ export default function useGlobalStateReducer() {
     dispatch({ type: "DISABLE_BOARD" });
 
     let timeout = setTimeout(() => {
-      dispatch({ type: "SHOW_ALL_CARDS" });
+      dispatch({ type: "HIDE_ALL_CARDS" });
     }, 3000);
 
     return () => clearTimeout(timeout);
