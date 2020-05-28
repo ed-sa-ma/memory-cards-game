@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import { useSelector } from "../../store/GlobalStateProvider";
+import { useRandomColors } from "../../hooks";
+import { useSelector, useDispatch } from "../../store/GlobalStateProvider";
 import { Button } from "../";
 import Card from "./Card";
 import { goToMain } from "../Router/Router";
@@ -12,6 +13,22 @@ function Board() {
     count: state.count,
     numberOfCards: state.board.length,
   }));
+  const dispatch = useDispatch();
+
+  let randomColors = useRandomColors();
+
+  useEffect(() => {
+    dispatch({ type: "SET_BOARD", colors: randomColors });
+
+    let timeout = setTimeout(() => {
+      dispatch({ type: "HIDE_ALL_CARDS" });
+    }, 3000);
+
+    return () => {
+      dispatch({ type: "RESET_BOARD" });
+      clearTimeout(timeout);
+    };
+  }, [dispatch, randomColors]);
 
   let boardRender = [];
   for (let i = 0; i < numberOfCards; i++) {

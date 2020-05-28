@@ -1,20 +1,11 @@
 import { useReducer, useEffect } from "react";
-import useRandomColors from "./useRandomColors";
 
-const NUMBER_OF_CARDS = 16;
-// Color palette generated here:
-// https://coolors.co/063f50-724e56-db504a-df8328-e3b505-9b9f4b-56a3a6-e6e1c5-ada375
-const POSSIBLE_COLORS = [
-  "#063F50",
-  "#724E56",
-  "#DB504A",
-  "#DF8328",
-  "#E3B505",
-  "#9B9F4B",
-  "#56A3A6",
-  "#E6E1C5",
-  "#ADA375",
-];
+const INITIAL_STATE = {
+  board: [],
+  isInteractive: false,
+  count: 0,
+  flippedCards: [],
+};
 
 function reducer(state, action) {
   switch (action.type) {
@@ -86,6 +77,19 @@ function reducer(state, action) {
         isInteractive: true,
       };
     }
+    case "RESET_BOARD": {
+      return { ...state, INITIAL_STATE };
+    }
+    case "SET_BOARD": {
+      let { colors } = action;
+      let board = colors.map((color) => ({
+        color,
+        visible: true,
+        present: true,
+      }));
+
+      return { ...state, INITIAL_STATE, board };
+    }
     default: {
       return state;
     }
@@ -93,30 +97,7 @@ function reducer(state, action) {
 }
 
 export default function useGlobalStateReducer() {
-  const randomColors = useRandomColors(POSSIBLE_COLORS, NUMBER_OF_CARDS);
-  let initialBoard = randomColors.map((color) => ({
-    visible: true,
-    color,
-    present: true,
-  }));
-
-  const [state, dispatch] = useReducer(reducer, {
-    board: initialBoard,
-    isInteractive: true,
-    count: 0,
-    flippedCards: [],
-  });
-
-  // Flip all card after some time showing them at the beginning.
-  useEffect(() => {
-    dispatch({ type: "DISABLE_BOARD" });
-
-    let timeout = setTimeout(() => {
-      dispatch({ type: "HIDE_ALL_CARDS" });
-    }, 3000);
-
-    return () => clearTimeout(timeout);
-  }, []);
+  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
 
   // Initiate a check if two cards are flipped.
   useEffect(() => {

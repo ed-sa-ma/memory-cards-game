@@ -1,39 +1,29 @@
 import { useMemo } from "react";
 
-function useRandomColors(availableColors, numberOfCards) {
-  const randomColors = useMemo(
-    function generateListOfColors() {
-      // There needs to be always an even number of cards.
-      const evenNumberOfCards =
-        numberOfCards % 2 === 0 ? numberOfCards : numberOfCards - 1;
-      const listOfColors = [];
+import { shuffleArray } from "../helpers";
 
-      // Generating an array with colors duplicated that will be shuffled after.
-      for (let i = 0; i < evenNumberOfCards; i++) {
-        listOfColors.push(
-          availableColors[Math.floor(i / 2) % availableColors.length]
-        );
-      }
+// Color palette generated here:
+// https://coolors.co/063f50-724e56-db504a-df8328-e3b505-9b9f4b-56a3a6-e6e1c5-ada375
+const POSSIBLE_COLORS = [
+  "#063F50",
+  "#724E56",
+  "#DB504A",
+  "#DF8328",
+  "#E3B505",
+  "#9B9F4B",
+  "#56A3A6",
+  "#E6E1C5",
+  "#ADA375",
+];
 
-      function shuffleArray(arr) {
-        var processedArray = [...arr];
-        var result = [];
+function useRandomColors(numberOfCards) {
+  const shuffledColors = useMemo(() => {
+    let result = [...POSSIBLE_COLORS, ...POSSIBLE_COLORS];
 
-        for (let i = 0; i < arr.length; i++) {
-          const randomIndex = Math.floor(Math.random() * processedArray.length);
-          result.push(processedArray[randomIndex]);
-          processedArray.splice(randomIndex, 1);
-        }
+    return shuffleArray(result);
+  }, []);
 
-        return result;
-      }
-
-      return shuffleArray(listOfColors);
-    },
-    [availableColors, numberOfCards]
-  );
-
-  return randomColors;
+  return shuffledColors;
 }
 
 export default useRandomColors;
